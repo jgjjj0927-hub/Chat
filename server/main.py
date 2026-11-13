@@ -7,7 +7,7 @@ from typing import Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException, Header
 from pydantic import BaseModel
 
-import db
+from server import db
 
 
 @asynccontextmanager
@@ -201,7 +201,6 @@ async def ws_endpoint(ws: WebSocket):
                 )
 
             elif kind == "channel_msg":
-                # заглушка до волны 3, честно говорит что не реализовано
                 await _send_safe(ws, {"kind": "stub", "for": "channel_msg"})
 
     except WebSocketDisconnect:
